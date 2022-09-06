@@ -1,15 +1,9 @@
-import React from 'react'
+import React, { FC } from 'react'
 import { StyleSheet, View, TouchableOpacity } from 'react-native'
 
-export interface CarouselProps {
-  dot?: React.ReactElement,
-  activeDot?: React.ReactElement,
-  index: number;
-  total: number;
-  scrollToPage: (index: number | null, animated?: boolean) => void;
-}
+import { CarouselControlProps } from './types'
 
-const CarouselControl = (props: any) => {
+const CarouselControl: FC<CarouselControlProps> = (props: any) => {
   const renderDot = (dotIndex: string | number) => {
     let { dot, scrollToPage } = props
 

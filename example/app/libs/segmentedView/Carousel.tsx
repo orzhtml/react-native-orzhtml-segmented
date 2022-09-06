@@ -1,21 +1,10 @@
 import React, { FC, forwardRef, useEffect, useImperativeHandle, useRef } from 'react'
-import { View, ScrollView, ScrollViewProps, Text } from 'react-native'
+import { View, ScrollView, ScrollViewProps } from 'react-native'
 import { useSafeAreaInsets } from 'react-native-safe-area-context'
 import { useSingleState, useSingleInstanceVar } from 'react-native-orzhtml-usecom'
 
+import { CarouselProps } from './types'
 import CarouselControl from './CarouselControl'
-
-export interface CarouselProps extends ScrollViewProps {
-  [p: string]: any;
-  carousel?: boolean; // 是否开启轮播
-  interval?: number; // 每页停留时间
-  direction?: string; // 轮播方向
-  startIndex?: number; // 起始页面编号，从 0 开始
-  cycle?: boolean; // 是否循环
-  control?: boolean | React.ReactElement;
-  insets?: boolean;
-  onChange: (index: number, total: number) => void; // (index, total) 页面改变时调用
-}
 
 interface CarouselInterProps extends ScrollViewProps {
   [p: string]: any;
@@ -310,7 +299,6 @@ const Carousel: FC<CarouselInterProps> = (props) => {
       <CarouselControl
         index={state.pageIndex}
         total={state.pageCount}
-        carousel={_scrollViewRef.current}
         style={{ bottom: props.insets ? _insets.bottom : 0 }}
         scrollToPage={scrollToPage}
       />
