@@ -3,32 +3,8 @@ import { View, ScrollView, ScrollViewProps } from 'react-native'
 import { useSafeAreaInsets } from 'react-native-safe-area-context'
 import { useSingleState, useSingleInstanceVar } from 'react-native-orzhtml-usecom'
 
-import { CarouselProps } from './types'
+import { CarouselInterProps, CarouselProps, InstanceProps } from './types'
 import CarouselControl from './CarouselControl'
-
-interface CarouselInterProps extends ScrollViewProps {
-  [p: string]: any;
-  refInstance: any;
-  carousel: boolean; // 是否开启轮播
-  interval: number; // 每页停留时间
-  direction: string; // 轮播方向
-  startIndex: number; // 起始页面编号，从 0 开始
-  cycle: boolean; // 是否循环
-  control: boolean | React.ReactElement;
-  insets: boolean;
-  onChange: (index: number, total: number) => void; // (index, total) 页面改变时调用
-}
-
-interface instanceProps {
-  cardIndex: null | number;
-  timer: null | NodeJS.Timeout;
-  carousel: null | boolean;
-  step: null | number;
-  pageCount: number;
-  cycle: boolean;
-  forward: boolean;
-  cardCount: number;
-}
 
 const Carousel: FC<CarouselInterProps> = (props) => {
   const [state, setState] = useSingleState({
@@ -37,7 +13,7 @@ const Carousel: FC<CarouselInterProps> = (props) => {
     pageIndex: props.startIndex,
     pageCount: 0,
   })
-  const instVal = useSingleInstanceVar<instanceProps>({
+  const instVal = useSingleInstanceVar<InstanceProps>({
     timer: null,
     cardIndex: null,
     carousel: null,
