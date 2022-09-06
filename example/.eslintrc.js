@@ -51,4 +51,9 @@ module.exports = {
       },
     },
   ],
+  globals: {
+    __DEV__: true,
+    NodeJS: true,
+    JSX: true,
+  },
 }
