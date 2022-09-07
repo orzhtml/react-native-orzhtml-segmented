@@ -15,6 +15,14 @@ const PageView = (props: any) => {
       >
         <Text style={lineStyles.btnText}>Carousel Demo &gt;</Text>
       </TouchableOpacity>
+      <TouchableOpacity
+        style={lineStyles.btn}
+        onPress={() => {
+          props.navigation?.navigate('Projector')
+        }}
+      >
+        <Text style={lineStyles.btnText}>Projector Demo &gt;</Text>
+      </TouchableOpacity>
     </View>
   )
 }

@@ -3,9 +3,56 @@ import { View, ScrollView, ScrollViewProps } from 'react-native'
 import { useSafeAreaInsets } from 'react-native-safe-area-context'
 import { useSingleState, useSingleInstanceVar } from 'react-native-orzhtml-usecom'
 
-import { CarouselInterProps, CarouselProps, InstanceProps } from './types'
 import CarouselControl from './CarouselControl'
 
+export interface CarouselProps extends ScrollViewProps {
+  [p: string]: any;
+  children: React.ReactNode;
+  carousel?: boolean; // 是否开启轮播
+  interval?: number; // 每页停留时间
+  direction?: string; // 轮播方向
+  startIndex?: number; // 起始页面编号，从 0 开始
+  cycle?: boolean; // 是否循环
+  control?: boolean | React.ReactElement;
+  insets?: boolean;
+  onChange: (index: number, total: number) => void; // (index, total) 页面改变时调用
+}
+
+export interface CarouselInterProps extends ScrollViewProps {
+  [p: string]: any;
+  children: React.ReactNode;
+  refInstance: any;
+  carousel: boolean; // 是否开启轮播
+  interval: number; // 每页停留时间
+  direction: string; // 轮播方向
+  startIndex: number; // 起始页面编号，从 0 开始
+  cycle: boolean; // 是否循环
+  control: boolean | React.ReactElement;
+  insets: boolean;
+  onChange: (index: number, total: number) => void; // (index, total) 页面改变时调用
+}
+
+export interface InstanceProps {
+  cardIndex: null | number;
+  timer: null | NodeJS.Timeout;
+  carousel: null | boolean;
+  step: null | number;
+  pageCount: number;
+  cycle: boolean;
+  forward: boolean;
+  cardCount: number;
+}
+
+export interface CarouselHandles {
+  scrollToPage: (index: number | null, animated: boolean) => void;
+  scrollToNextPage: (animated: boolean) => void;
+}
+
+/**
+ * @param props 通过 props 传入的 children 变更会重新渲染内部 dom
+ * startIndex 变更并不会重新渲染，需要通过暴露出去的两个方法来改变内部页面位置
+ * @returns { scrollToPage, scrollToNextPage }
+ */
 const Carousel: FC<CarouselInterProps> = (props) => {
   const [state, setState] = useSingleState({
     width: 0,
@@ -262,7 +309,7 @@ const Carousel: FC<CarouselInterProps> = (props) => {
 
   let _controlView = null
   if (React.isValidElement(control)) {
-    _controlView = React.cloneElement(control, {
+    _controlView = React.cloneElement<any>(control, {
       index: state.pageIndex,
       total: state.pageCount,
       carousel: _scrollViewRef.current,
@@ -304,7 +351,7 @@ const Carousel: FC<CarouselInterProps> = (props) => {
 
 const Component = Carousel
 // 注意：这里不要在 Component 上使用 ref, 换个属性名字比如 refInstance 不然会导致覆盖
-export default forwardRef((props: CarouselProps, ref) => {
+export default forwardRef<CarouselHandles, CarouselProps>((props, ref) => {
   const defaultProps = {
     horizontal: true, // 修改为false是纵向滚动
     pagingEnabled: true,

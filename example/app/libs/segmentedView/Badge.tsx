@@ -1,19 +1,19 @@
-import React from 'react'
+import React, { FC } from 'react'
 import { View, Text } from 'react-native'
 
 export interface BadgeProps {
-  [p: string]: any
-  refInstance?: any
-  type: string
-  count: string | number
-  countStyle: any
-  maxCount: number
+  [p: string]: any;
+  type: string;
+  count: string | number;
+  style: any;
+  countStyle: any;
+  maxCount: number;
 }
 
-const Badge = (props: any) => {
+const Badge: FC<BadgeProps> = (props) => {
   let { style, children, type, count, countStyle, maxCount, ...others } = props
 
-  const buildStyle = () => {
+  const buildStyle = (): any => {
     let width, height, minWidth, borderRadius, borderWidth, padding
     switch (type) {
       case 'capsule':

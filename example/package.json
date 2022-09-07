@@ -12,7 +12,9 @@
     "pod": "npx pod-install ios",
     "clean": "rm -rf ./node_modules ./yarn.lock && yarn clean-pod",
     "clean-pod": "rm -rf ./ios/Pods ./ios/Podfile.lock",
-    "clean-cache": "rm -rf $TMPDIR/metro-bundler-cache-*"
+    "clean-cache": "rm -rf $TMPDIR/metro-bundler-cache-*",
+    "clean-dis": "rm -rf ./dist",
+    "ts-dis": "yarn clean-dis && tsc -p ./tsconfig.dist.json -emitDeclarationOnly"
   },
   "dependencies": {
     "@react-navigation/native": "^6.0.12",

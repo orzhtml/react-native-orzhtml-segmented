@@ -4,8 +4,7 @@ import { useSingleState } from 'react-native-orzhtml-usecom'
 import { useSafeAreaInsets } from 'react-native-safe-area-context'
 
 import MyStatusBar from '../../libs/MyStatusBar/MyStatusBar'
-import { Carousel } from '../../libs/segmentedView'
-import { CarouselHandles } from '../../libs/segmentedView/Carousel'
+import { Projector } from '../../libs/segmentedView'
 
 const topTitleHeight = Platform.select({ android: 50, ios: 44 })
 
@@ -19,13 +18,9 @@ const PageView = (props: any) => {
       { id: 1, name: '第二页', color: 'green' },
       { id: 2, name: '第三页', color: 'pink' },
     ],
+    activeIndex: 0,
     number: 0,
   })
-  const _carouselRef = useRef<CarouselHandles>(null)
-
-  const xxx = () => {
-    _carouselRef.current?.scrollToNextPage(true)
-  }
 
   return (
     <View style={lineStyles.container}>
@@ -40,7 +35,18 @@ const PageView = (props: any) => {
           <Text style={lineStyles.btnText}>&lt; 返回</Text>
         </TouchableOpacity>
       </View>
-      <Carousel ref={_carouselRef} control={true} startIndex={2} insets={true}>
+      <Button onPress={() => {
+        let _index = state.activeIndex + 1
+        if (_index >= state.tabs.length) {
+          _index = 0
+        }
+        setState({
+          activeIndex: _index,
+        })
+      }} title="切换" />
+      <Projector
+        index={state.activeIndex}
+      >
         {
           state.tabs.map((item, index) => {
             return (
@@ -76,7 +82,7 @@ const PageView = (props: any) => {
             )
           })
         }
-      </Carousel>
+      </Projector>
       {/* <View style={{ height: _insets.bottom }} /> */}
     </View>
   )
