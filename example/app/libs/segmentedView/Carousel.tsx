@@ -50,7 +50,7 @@ export interface CarouselHandles {
 
 /**
  * @param props 通过 props 传入的 children 变更会重新渲染内部 dom
- * startIndex 变更并不会重新渲染，需要通过暴露出去的两个方法来改变内部页面位置
+ * startIndex 变更并不会更新位置，需要通过暴露出去的两个方法来改变内部页面位置
  * @returns { scrollToPage, scrollToNextPage }
  */
 const Carousel: FC<CarouselInterProps> = (props) => {
@@ -330,7 +330,7 @@ const Carousel: FC<CarouselInterProps> = (props) => {
 
   return (
     <View style={[
-      { backgroundColor: 'red', alignItems: 'stretch', flex: 1 },
+      { alignItems: 'stretch', flex: 1 },
       style,
     ]}>
       <ScrollView

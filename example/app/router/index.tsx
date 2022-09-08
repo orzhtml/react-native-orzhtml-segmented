@@ -5,6 +5,7 @@ import { createStackNavigator, TransitionPresets } from '@react-navigation/stack
 import Home from '../views/home/Home'
 import Carousel from '../views/carousel/Carousel'
 import Projector from '../views/projector/Projector'
+import Segmented from '../views/segmented/Segmented'
 
 const RootStack = createStackNavigator()
 // 渐变屏幕的配置
@@ -33,6 +34,13 @@ function Router () {
         <RootStack.Screen
           name={'Projector'}
           component={Projector}
+          options={{
+            ...TransitionPresets.SlideFromRightIOS,
+          }}
+        />
+        <RootStack.Screen
+          name={'Segmented'}
+          component={Segmented}
           options={{
             ...TransitionPresets.SlideFromRightIOS,
           }}

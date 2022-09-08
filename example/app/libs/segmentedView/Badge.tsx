@@ -3,11 +3,11 @@ import { View, Text } from 'react-native'
 
 export interface BadgeProps {
   [p: string]: any;
-  type: string;
+  type?: string;
   count: string | number;
   style: any;
-  countStyle: any;
-  maxCount: number;
+  countStyle?: any;
+  maxCount?: number;
 }
 
 const Badge: FC<BadgeProps> = (props) => {
@@ -72,7 +72,7 @@ const Badge: FC<BadgeProps> = (props) => {
       ].concat(countStyle)
       return (
         <Text style={countStyle} allowFontScaling={false} numberOfLines={1}>
-          {count > maxCount ? maxCount + '+' : count}
+          {maxCount !== undefined && count > maxCount ? maxCount + '+' : count}
         </Text>
       )
     } else {

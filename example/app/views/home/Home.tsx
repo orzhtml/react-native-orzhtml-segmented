@@ -23,6 +23,14 @@ const PageView = (props: any) => {
       >
         <Text style={lineStyles.btnText}>Projector Demo &gt;</Text>
       </TouchableOpacity>
+      <TouchableOpacity
+        style={lineStyles.btn}
+        onPress={() => {
+          props.navigation?.navigate('Segmented')
+        }}
+      >
+        <Text style={lineStyles.btnText}>Segmented Demo &gt;</Text>
+      </TouchableOpacity>
     </View>
   )
 }
@@ -32,13 +40,14 @@ const lineStyles = StyleSheet.create({
   btn: {
     alignItems: 'center',
     justifyContent: 'center',
-    height: 40,
+    height: 60,
     borderBottomWidth: StyleSheet.hairlineWidth,
     borderBottomColor: '#aaa',
     marginLeft: 20,
   },
   btnText: {
     fontSize: 18,
+    fontWeight: '700',
   },
 })
 
