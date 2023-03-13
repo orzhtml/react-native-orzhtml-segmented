@@ -1,29 +1,38 @@
 import React from 'react'
-import { View, StatusBar, useColorScheme } from 'react-native'
+import { View, StatusBar, StyleProp, ViewStyle, StatusBarProps } from 'react-native'
+import { useSafeAreaInsets } from 'react-native-safe-area-context'
 import { useIsFocused } from '@react-navigation/native'
-import { getStatusBarHeight } from 'react-native-status-bar-height'
 
-const statusBarHeight = getStatusBarHeight()
-function MyStatusBar (props: any) {
+export interface CmStatusBarProps extends StatusBarProps {
+  backgroundColor?: string;
+  styleBar?: StyleProp<ViewStyle>;
+  hidden?: boolean;
+}
+
+/** Define the widget for CmStatusBar */
+function CmStatusBar (props: CmStatusBarProps) {
   const isFocused = useIsFocused()
-  const isDarkMode = useColorScheme() === 'dark'
+  const _insets = useSafeAreaInsets()
   const { backgroundColor, styleBar, hidden } = props
 
+  // Rendering the UI
   return (
     <View
       style={[
-        { height: statusBarHeight },
+        { height: _insets.top },
         { backgroundColor },
-        styleBar || null, hidden ? { height: 0 } : null,
+        styleBar,
+        hidden ? { height: 0 } : null,
       ]}
     >
       {
         isFocused ? (
-          <StatusBar translucent barStyle={isDarkMode ? 'light-content' : 'dark-content'} {...props} />
+          <StatusBar translucent barStyle='dark-content' {...props} />
         ) : null
       }
     </View>
   )
 }
 
-export default MyStatusBar
+// Export the CmStatusBar
+export default CmStatusBar
