@@ -1,0 +1,44 @@
+{
+  "name": "react-native-orzhtml-segmented",
+  "version": "1.0.0",
+  "description": "react react-native typescript segmented view",
+  "main": "index.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/orzhtml/react-native-orzhtml-segmented.git"
+  },
+  "keywords": [
+    "react",
+    "react-native",
+    "typescript",
+    "hooks",
+    "segmented",
+    "segmented view",
+    "segmentedView",
+    "segmented-view"
+  ],
+  "author": "orzhtml",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/orzhtml/react-native-orzhtml-segmented/issues"
+  },
+  "homepage": "https://github.com/orzhtml/react-native-orzhtml-segmented#readme",
+  "peerDependencies": {
+    "react": "*",
+    "react-native": "*"
+  },
+  "jest": {
+    "preset": "react-native",
+    "moduleFileExtensions": [
+      "ts",
+      "tsx",
+      "js",
+      "jsx",
+      "json",
+      "node"
+    ]
+  }
+}

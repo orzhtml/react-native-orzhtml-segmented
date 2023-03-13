@@ -1,2 +1,2 @@
-# react-native-orzhtml-segmented-view
+# react-native-orzhtml-segmented
 分割视图
