@@ -6,8 +6,8 @@ export interface BadgeProps {
   refInstance?: any;
   type: string;
   count: string | number;
-  countStyle: any;
-  maxCount: number;
+  countStyle?: any;
+  maxCount?: number;
 }
 /** Define the widget for Badge */
 const Badge = (props: any) => {

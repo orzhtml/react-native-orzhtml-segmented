@@ -18,7 +18,7 @@ export interface CarouselProps extends ScrollViewProps {
   cycle?: boolean, // 是否循环
   control?: boolean | React.ReactElement,
   insets?: boolean,
-  onChange: (index: number, total: number) => void, // (index, total) 页面改变时调用
+  onChange?: (index: number, total: number) => void, // (index, total) 页面改变时调用
   children?: React.ReactNode | React.ReactNode[],
 }
 

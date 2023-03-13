@@ -1,10 +1,16 @@
 import React from 'react'
-import { View } from 'react-native'
+import { StyleProp, View, ViewProps, ViewStyle } from 'react-native'
 
-const SegmentedSheet = (props: any) => {
+interface SegmentedSheetProps extends ViewProps {
+  title?: string | React.ReactNode,
+  titleStyle?: StyleProp<ViewStyle>,
+  activeTitleStyle?: StyleProp<ViewStyle>,
+  badge: any,
+}
+
+const SegmentedSheet = (props: SegmentedSheetProps) => {
   let { style, title, titleStyle, activeTitleStyle, badge, ...others } = props
-  let _style = [{ flexGrow: 1 }].concat(style)
-  return <View style={_style} {...others} />
+  return <View style={[{ flexGrow: 1 }, style]} {...others} />
 }
 
 export default SegmentedSheet

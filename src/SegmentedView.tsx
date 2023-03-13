@@ -1,5 +1,5 @@
 import React, { FC, forwardRef, useEffect, useImperativeHandle, useRef } from 'react'
-import { View } from 'react-native'
+import { StyleProp, View, ViewStyle } from 'react-native'
 import { useSingleState } from 'react-native-orzhtml-usecom'
 
 import Carousel, { CarouselHandles } from './Carousel'
@@ -13,23 +13,23 @@ export interface SegmentedHandles {
 
 export interface SegmentedViewProps {
     [p: string]: any;
-    type: string;
-    barPosition: string;
+    type?: string;
+    barPosition?: string;
     // SegmentedBar props
-    barStyle: any;
-    barItemStyle: any;
-    justifyItem: string;
-    indicatorType: string;
-    indicatorPosition: string;
-    indicatorLineColor: string;
-    indicatorLineWidth: number;
-    indicatorPositionPadding: number;
-    animated: boolean;
-    autoScroll: boolean;
+    barStyle?: StyleProp<ViewStyle>;
+    barItemStyle?: StyleProp<ViewStyle>;
+    justifyItem?: string;
+    indicatorType?: string;
+    indicatorPosition?: string;
+    indicatorLineColor?: string;
+    indicatorLineWidth?: number;
+    indicatorPositionPadding?: number;
+    animated?: boolean;
+    autoScroll?: boolean;
     activeIndex: number;
-    onChange: (index: number) => void; // (index)
-    renderView: any;
-    readerViewOptions: object;
+    onChange: (index: number) => void;
+    renderView?: any;
+    readerViewOptions?: object;
 }
 
 export interface SegmentedViewInterProps extends SegmentedViewProps {

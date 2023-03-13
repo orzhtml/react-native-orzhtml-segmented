@@ -4,10 +4,10 @@ import { StyleSheet, View, TouchableOpacity, StyleProp, ViewStyle } from 'react-
 export interface CarouselControlProps {
   dot?: React.ReactNode,
   activeDot?: React.ReactNode,
-  index: number,
-  total: number,
-  scrollToPage: (index: number, animated?: boolean) => void,
-  style: StyleProp<ViewStyle>,
+  index?: number,
+  total?: number,
+  scrollToPage?: (index: number, animated?: boolean) => void,
+  style?: StyleProp<ViewStyle>,
 }
 
 const CarouselControl: FC<CarouselControlProps> = (props) => {
@@ -17,7 +17,9 @@ const CarouselControl: FC<CarouselControlProps> = (props) => {
     if (React.isValidElement(dot)) {
       dot = React.cloneElement<any>(dot, {
         key: dotIndex,
-        onPress: () => scrollToPage(dotIndex),
+        onPress: () => {
+          scrollToPage && scrollToPage(dotIndex)
+        },
       })
       return dot
     }
@@ -31,7 +33,9 @@ const CarouselControl: FC<CarouselControlProps> = (props) => {
           alignItems: 'center',
           justifyContent: 'center',
         }}
-        onPress={() => scrollToPage(dotIndex)}
+        onPress={() => {
+          scrollToPage && scrollToPage(dotIndex)
+        }}
       >
         <View
           style={{
@@ -74,7 +78,7 @@ const CarouselControl: FC<CarouselControlProps> = (props) => {
   }
 
   const renderDots = () => {
-    let { index, total } = props
+    let { index, total = 0 } = props
     let dots = []
     for (let i = 0; i < total; ++i) {
       if (i === index) dots.push(renderActiveDot(i))
