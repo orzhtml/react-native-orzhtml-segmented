@@ -95,7 +95,7 @@ const Carousel: FC<CarouselInterProps> = (props) => {
     // 卡片数量，card定义：轮播中的页面序列，如为循环播放则首尾各多一页，如页面为0-1-2，则cards为2-0-1-2-0
     instVal.cardCount = multiPage && instVal.cycle ? instVal.pageCount + 2 : instVal.pageCount
 
-    if (instVal.cardIndex === null || instVal.cardIndex! >= instVal.cardCount) {
+    if (instVal.cardIndex === undefined || instVal.cardIndex! >= instVal.cardCount) {
       instVal.cardIndex = multiPage && instVal.cycle ? startIndex! + 1 : startIndex
     }
     // 下一页卡片步进
