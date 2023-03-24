@@ -1,6 +1,6 @@
 {
   "name": "react-native-orzhtml-segmented",
-  "version": "1.0.2",
+  "version": "1.0.4",
   "description": "react react-native typescript segmented view",
   "main": "index.ts",
   "scripts": {
@@ -40,5 +40,9 @@
       "json",
       "node"
     ]
-  }
+  },
+  "files": [
+    "index.ts",
+    "src"
+  ]
 }
